@@ -1,0 +1,92 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  aws-lambda-task-handler
+
+  Lambda function to process EventBridge task events and store COMPLETED task object in S3
+
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 128
+
+    LoggingConfig:
+      LogFormat: JSON
+
+Parameters:
+  S3BucketName:
+    Type: String
+    Default: task-catalog-bucket
+    Description: Name of the S3 bucket to store all COMPLETED task details
+
+Resources:
+  # S3 Bucket for storing task details
+  TaskCatalogBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref S3BucketName
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+  TaskHandlerFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: hello_world/
+      Handler: app.lambda_handler
+      Runtime: python3.9
+      Architectures:
+        - x86_64
+      Environment:
+        Variables:
+          S3_BUCKET_NAME: !Ref TaskCatalogBucket
+      Policies:
+        - S3WritePolicy:
+            BucketName: !Ref TaskCatalogBucket
+        - Version: "2012-10-17"
+          Statement:
+            - Effect: Allow
+              Action:
+                - logs:CreateLogGroup
+                - logs:CreateLogStream
+                - logs:PutLogEvents
+              Resource: "*"
+      Events:
+        TaskEvent:
+          Type: EventBridgeRule
+          Properties:
+            EventBusName: default
+            Pattern:
+              source: ["task.manager"]
+              detail-type: ["Task Completed"]
+              detail:
+                status: ["COMPLETED"]
+
+  ApplicationResourceGroup:
+    Type: AWS::ResourceGroups::Group
+    Properties:
+      Name:
+        Fn::Sub: ApplicationInsights-SAM-${AWS::StackName}
+      ResourceQuery:
+        Type: CLOUDFORMATION_STACK_1_0
+  ApplicationInsightsMonitoring:
+    Type: AWS::ApplicationInsights::Application
+    Properties:
+      ResourceGroupName:
+        Ref: ApplicationResourceGroup
+      AutoConfigurationEnabled: "true"
+Outputs:
+  TaskHandlerFunction:
+    Description: Task Handler Lambda Function ARN
+    Value: !GetAtt TaskHandlerFunction.Arn
+  TaskHandlerFunctionIamRole:
+    Description: Implicit IAM Role created for Task Handler function
+    Value: !GetAtt TaskHandlerFunctionRole.Arn
+  TaskCatalogBucket:
+    Description: S3 Bucket for storing task details
+    Value: !Ref TaskCatalogBucket
+  TaskCatalogBucketArn:
+    Description: S3 Bucket ARN for storing task details
+    Value: !GetAtt TaskCatalogBucket.Arn

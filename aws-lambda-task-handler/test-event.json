@@ -1,0 +1,7 @@
+[
+  {
+    "Source": "task.manager",
+    "DetailType": "Task Completed",
+    "Detail": "{\"id\": 123, \"title\": \"Test Task from CLI\", \"description\": \"This is a test task to verify Lambda deployment\", \"status\": \"COMPLETED\", \"dueDate\": \"2025-09-05T17:00:00Z\", \"createdAt\": \"2025-08-26T23:30:43.084639Z\", \"updatedAt\": \"2025-08-27T04:10:00.000000Z\"}"
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "version": "0",
+  "id": "12345678-1234-1234-1234-123456789012",
+  "detail-type": "Task Updated",
+  "source": "task.manager",
+  "account": "123456789012",
+  "time": "2025-08-27T00:47:55Z",
+  "region": "us-east-1",
+  "detail": {
+    "id": 2,
+    "title": "UPDATED API called",
+    "description": "Updated event desc with completed status",
+    "status": "COMPLETED",
+    "dueDate": "2025-09-05T17:00:00",
+    "createdAt": "2025-08-26T23:30:43.084639",
+    "updatedAt": "2025-08-27T00:47:55.599711"
+  }
+}
