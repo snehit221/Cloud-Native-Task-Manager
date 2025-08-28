@@ -3,7 +3,7 @@
 A full-stack cloud-native application demonstrating modern software development practices with Spring Boot, Angular, and AWS services.
 
 ---
-
+## URLs when I deployed to AWS(as shown in video and screenshots)
 **Live Demo**: [https://d3eohu6f5v8xz9.cloudfront.net/](https://d3eohu6f5v8xz9.cloudfront.net/)
 
 **API Documentation**: [http://cloud-task-manager-env.eba-jrrbb8xa.us-east-1.elasticbeanstalk.com/swagger-ui/index.html#/](http://cloud-task-manager-env.eba-jrrbb8xa.us-east-1.elasticbeanstalk.com/swagger-ui/index.html#/)
@@ -16,14 +16,39 @@ A full-stack cloud-native application demonstrating modern software development 
 
 ## Cloud Native Project Architecture:
 
-![Architecture Diagram](task-management-architecture.png)
+![Architecture Diagram](cloud-arch.png)
 
 ## Architecture Overview
+
+## Alternative Architecture on Cloud
+
+Instead of triggering an EventBridge event on task completion, an alternative approach could have been to use Amazon SQS to enqueue completed task events. This would allow downstream services to consume the messages reliably, with built-in retry and dead-letter queue support for fault tolerance. Such a design is well-suited when guaranteed processing of every completed task is critical, and broad event distribution is not required.
+
+Another option would be to use Amazon SNS, which is ideal when multiple services need to react in parallel to a completed task. For example, one subscriber could update analytics, another could send notifications, and a third could archive historical data. This event-driven, decoupled architecture ensures scalability, flexibility, and aligns with AWS best practices for building resilient cloud-native systems.
+
 
 This project consists of three main components:
 - **Spring Boot REST API** - Backend service for task management
 - **Angular Frontend** - Responsive web application 
-- **AWS Lambda Function** - Event-driven serverless task processing
+- **AWS Lambda Function** - Event-driven serverless task processing, **used API Gateway as HTTPS proxy**
+
+## Working Web App ScreenShots 
+
+![HomePage via Cloufront](homepage-cloudfront.png)
+
+![New Task Form](new-task-form.png)
+
+![S3 objects stored by EventBridge events and Lambda execution](s3-objects.png)
+
+![Swagger REST API Documentation Page](swagger-on-eb.png)
+
+## Future Enhancements
+
+- User authentication and authorization
+- Mobile application with React Native
+- Adding a VPC, public and private subnets where I will store the public serving applications in public subnet and the RDS Aurora (it will be better if application is globally scaled) or PostgreSQL database in a private subnet for security.
+- I will automate the Infrastrucure using IaC best practises with Terraform, SAM and CloudFormation for all resources.
+- I will also add AWS CodeBuild and Pipeline flow for automated CI/CD.
 
 ## Project Structure
 
@@ -173,7 +198,7 @@ sam deploy --guided
 
 #### Spring Boot
 ```properties
-server.port=8080
+server.port=5000, // I have given this port after nginx 502 bad gateway debug for Elastic Beanstalk.
 spring.datasource.url=${DATABASE_URL:jdbc:h2:mem:taskdb}
 aws.region=${AWS_REGION:us-east-1}
 cors.allowed.origins=${CORS_ORIGINS:http://localhost:4200}
@@ -183,7 +208,7 @@ cors.allowed.origins=${CORS_ORIGINS:http://localhost:4200}
 ```typescript
 export const environment = {
   production: true,
-  apiUrl: 'https://your-backend-domain.com/api'
+  apiUrl: 'https://my-elastic-beanstak-domain/api'
 };
 The apiUrl is my Elastic Beanstalk backend URL that will serve content to front end
 ```
@@ -213,15 +238,6 @@ AWS_REGION = os.environ.get('AWS_REGION', 'us-east-1')
 1. **Local Development**: Use H2 database and mock AWS services
 2. **Testing**: Comprehensive unit tests implemented with 88% test coverage for service class
 4. **Monitoring**: CloudWatch dashboards and alerts implemented
-
-## Future Enhancements
-
-- User authentication and authorization
-- Mobile application with React Native
-- Adding a VPC, public and private subnets where I will store the public serving applications in public subnet and the RDS Aurora (it will be better if application is globally scaled) or PostgreSQL database in a private subnet for security.
-- I will automate the Infrastrucure using IaC best practises with Terraform, SAM and CloudFormation for all resources.
-- I will also add AWS CodeBuild and Pipeline flow for automated CI/CD.
-- Microservices architecture with API Gateway
 
 
 
