@@ -8,6 +8,12 @@ A full-stack cloud-native application demonstrating modern software development 
 
 **API Documentation**: [http://cloud-task-manager-env.eba-jrrbb8xa.us-east-1.elasticbeanstalk.com/swagger-ui/index.html#/](http://cloud-task-manager-env.eba-jrrbb8xa.us-east-1.elasticbeanstalk.com/swagger-ui/index.html#/)
 
+## DEMO VIDEO:
+[AWS Cloud Full Stack Architecture and Demo](https://drive.google.com/file/d/1nCe-jKmgFN4hT38MI4doDSGIPuFPRXRJ/view?usp=drive_link)
+ 
+[Swagger Demo for Documentation](https://drive.google.com/file/d/1ZJ1Fie5GHxv4gOC5dujcfX-Gl5JInIfc/view?usp=drive_link)
+
+
 ## Cloud Native Project Architecture:
 
 ![Architecture Diagram](task-management-architecture.png)
