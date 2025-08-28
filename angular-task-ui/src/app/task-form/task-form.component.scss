@@ -1,0 +1,89 @@
+.task-form-container {
+  max-width: 500px;
+  min-width: 400px;
+}
+
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+mat-dialog-title {
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+mat-dialog-content {
+  padding: 0 24px;
+  margin-bottom: 16px;
+}
+
+mat-dialog-actions {
+  gap: 8px;
+  
+  button {
+    min-width: 80px;
+  }
+}
+
+mat-form-field {
+  margin-bottom: 8px;
+  
+  &.ng-invalid.ng-touched {
+    .mat-form-field-outline {
+      color: #f44336;
+    }
+  }
+}
+
+.status-chip {
+  &.todo {
+    background-color: #e3f2fd;
+    color: #1976d2;
+  }
+  
+  &.in-progress {
+    background-color: #fff3e0;
+    color: #f57c00;
+  }
+  
+  &.completed {
+    background-color: #e8f5e8;
+    color: #388e3c;
+  }
+}
+
+.loading-button {
+  mat-icon {
+    animation: spin 1s linear infinite;
+    margin-right: 8px;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Error styling
+mat-error {
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+// Responsive design
+@media (max-width: 480px) {
+  .task-form-container {
+    min-width: 320px;
+    max-width: 100%;
+  }
+  
+  mat-dialog-content {
+    padding: 0 16px;
+  }
+}

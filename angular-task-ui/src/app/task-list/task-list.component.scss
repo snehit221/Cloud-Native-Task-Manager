@@ -1,0 +1,35 @@
+:host {
+  display: block;
+  margin-top: 24px; // Adding some space from the toolbar
+}
+
+.task-list-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 24px;
+  
+  mat-form-field {
+    min-width: 200px;
+    flex: 1;
+    max-width: 300px;
+  }
+  
+  button {
+    flex-shrink: 0;
+  }
+}
+
+// Responsive behavior
+@media (max-width: 768px) {
+  .task-list-controls {
+    flex-direction: column;
+    align-items: stretch;
+    
+    button {
+      margin-left: 0;
+      align-self: center;
+    }
+  }
+}

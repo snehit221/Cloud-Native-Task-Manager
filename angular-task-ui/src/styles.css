@@ -1,0 +1,29 @@
+/* global styles in this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.success-snackbar {
+  .mat-mdc-snack-bar-container {
+    --mat-snack-bar-button-color: #4caf50;
+    --mdc-snackbar-container-color: #4caf50;
+    --mdc-snackbar-supporting-text-color: white;
+  }
+}
+
+.error-snackbar {
+  .mat-mdc-snack-bar-container {
+    --mat-snack-bar-button-color: #f44336;
+    --mdc-snackbar-container-color: #f44336;
+    --mdc-snackbar-supporting-text-color: white;
+  }
+}

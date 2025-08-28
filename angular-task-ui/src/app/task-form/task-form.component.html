@@ -1,0 +1,72 @@
+<div class="task-form-container">
+  <h2 mat-dialog-title>{{ isEditMode ? 'Edit Task' : 'Create New Task' }}</h2>
+  
+  <mat-dialog-content>
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="task-form">
+      
+      <!-- Title Field -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Title *</mat-label>
+        <input matInput formControlName="title" placeholder="Enter task title">
+        <mat-error *ngIf="hasFieldError('title')">
+          {{ getFieldError('title') }}
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Description Field -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput 
+                  formControlName="description" 
+                  placeholder="Enter task description"
+                  rows="4">
+        </textarea>
+        <mat-error *ngIf="hasFieldError('description')">
+          {{ getFieldError('description') }}
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Status Field -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Status *</mat-label>
+        <mat-select formControlName="status">
+          <mat-option *ngFor="let status of taskStatuses" [value]="status">
+            {{ getStatusDisplayName(status) }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="hasFieldError('status')">
+          {{ getFieldError('status') }}
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Due Date Field -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Due Date *</mat-label>
+        <input matInput 
+               type="datetime-local" 
+               formControlName="dueDate"
+               [min]="getCurrentDateTime()">
+        <mat-error *ngIf="hasFieldError('dueDate')">
+          {{ getFieldError('dueDate') }}
+        </mat-error>
+      </mat-form-field>
+
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button 
+            type="button" 
+            (click)="onCancel()"
+            [disabled]="isSubmitting">
+      Cancel
+    </button>
+    <button mat-raised-button 
+            color="primary" 
+            (click)="onSubmit()"
+            [disabled]="isSubmitting">
+      <mat-icon *ngIf="isSubmitting">hourglass_empty</mat-icon>
+      {{ isSubmitting ? 'Saving...' : (isEditMode ? 'Update' : 'Create') }}
+    </button>
+  </mat-dialog-actions>
+</div>
