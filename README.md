@@ -4,9 +4,9 @@ A full-stack cloud-native application demonstrating modern software development 
 
 ---
 
-**Live Demo**: [https://your-cloudfront-domain.com](https://your-cloudfront-domain.com)
+**Live Demo**: [https://d3eohu6f5v8xz9.cloudfront.net/](https://d3eohu6f5v8xz9.cloudfront.net/)
 
-**API Documentation**: [https://your-backend-domain.com/swagger-ui.html](https://your-backend-domain.com/swagger-ui.html)
+**API Documentation**: [http://cloud-task-manager-env.eba-jrrbb8xa.us-east-1.elasticbeanstalk.com/swagger-ui/index.html#/](http://cloud-task-manager-env.eba-jrrbb8xa.us-east-1.elasticbeanstalk.com/swagger-ui/index.html#/)
 
 ## Cloud Native Project Architecture:
 
