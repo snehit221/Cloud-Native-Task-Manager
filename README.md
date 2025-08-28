@@ -8,6 +8,9 @@ A full-stack cloud-native application demonstrating modern software development 
 
 **API Documentation**: [https://your-backend-domain.com/swagger-ui.html](https://your-backend-domain.com/swagger-ui.html)
 
+## Cloud Native Project Architecture:
+
+![Architecture Diagram](task-management-architecture.png)
 
 ## Architecture Overview
 
