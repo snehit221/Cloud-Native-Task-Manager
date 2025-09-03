@@ -20,7 +20,7 @@ A full-stack cloud-native application demonstrating modern software development 
 
 ## Architecture Overview
 
-## Alternative Architecture on Cloud
+## Alternative Architecture tradeoffs on Cloud:
 
 Instead of triggering an EventBridge event on task completion, an alternative approach could have been to use Amazon SQS to enqueue completed task events. This would allow downstream services to consume the messages reliably, with built-in retry and dead-letter queue support for fault tolerance. Such a design is well-suited when guaranteed processing of every completed task is critical, and broad event distribution is not required.
 
@@ -32,15 +32,23 @@ This project consists of three main components:
 - **Angular Frontend** - Responsive web application 
 - **AWS Lambda Function** - Event-driven serverless task processing, **used API Gateway as HTTPS proxy**
 
-## Working Web App ScreenShots 
+## Working Web App ScreenShots: 
 
 ![HomePage via Cloufront](homepage-cloudfront.png)
 
+**Home Page Served via CloudFront**
+
 ![New Task Form](new-task-form.png)
+
+**New Task Form**
 
 ![S3 objects stored by EventBridge events and Lambda execution](s3-objects.png)
 
+**S3 Objects stored by EventBridge events and Lambda Excecution***
+
 ![Swagger REST API Documentation Page](swagger-on-eb.png)
+
+**Swagger REST API Doccumentation**
 
 ## Future Enhancements
 
