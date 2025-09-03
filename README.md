@@ -2,21 +2,20 @@
 
 A full-stack cloud-native application demonstrating modern software development practices with Spring Boot, Angular, and AWS services.
 
+## Cloud Native Project Architecture:
+
+![Architecture Diagram](arc-assets/cloud-arch.png)
 ---
-## URLs when I deployed to AWS(as shown in video and screenshots)
+## WATCH THE DEMO VIDEO:
+[AWS Cloud Full Stack Architecture and Demo](https://drive.google.com/file/d/1nCe-jKmgFN4hT38MI4doDSGIPuFPRXRJ/view?usp=drive_link)
+
+[Swagger Demo for Documentation](https://drive.google.com/file/d/1ZJ1Fie5GHxv4gOC5dujcfX-Gl5JInIfc/view?usp=drive_link)
+
+---
+## URLs when app was deployed to AWS
 **Live Demo**: [https://d3eohu6f5v8xz9.cloudfront.net/](https://d3eohu6f5v8xz9.cloudfront.net/)
 
 **API Documentation**: [http://cloud-task-manager-env.eba-jrrbb8xa.us-east-1.elasticbeanstalk.com/swagger-ui/index.html#/](http://cloud-task-manager-env.eba-jrrbb8xa.us-east-1.elasticbeanstalk.com/swagger-ui/index.html#/)
-
-## DEMO VIDEO:
-[AWS Cloud Full Stack Architecture and Demo](https://drive.google.com/file/d/1nCe-jKmgFN4hT38MI4doDSGIPuFPRXRJ/view?usp=drive_link)
- 
-[Swagger Demo for Documentation](https://drive.google.com/file/d/1ZJ1Fie5GHxv4gOC5dujcfX-Gl5JInIfc/view?usp=drive_link)
-
-
-## Cloud Native Project Architecture:
-
-![Architecture Diagram](cloud-arch.png)
 
 ## Architecture Overview
 
@@ -34,21 +33,21 @@ This project consists of three main components:
 
 ## Working Web App ScreenShots: 
 
-![HomePage via Cloufront](homepage-cloudfront.png)
+![HomePage via Cloufront](arc-assets/homepage-cloudfront.png)
 
 **Home Page Served via CloudFront**
 
-![New Task Form](new-task-form.png)
+![New Task Form](arc-assets/new-task-form.png)
 
 **New Task Form**
 
-![S3 objects stored by EventBridge events and Lambda execution](s3-objects.png)
+![S3 objects stored by EventBridge events and Lambda execution](arc-assets/s3-objects.png)
 
-**S3 Objects stored by EventBridge events and Lambda Excecution***
+**S3 Objects stored by EventBridge events and Lambda Excecution**
 
-![Swagger REST API Documentation Page](swagger-on-eb.png)
+![Swagger REST API Documentation Page](arc-assets/swagger-on-eb.png)
 
-**Swagger REST API Doccumentation**
+**Swagger REST API Documentation**
 
 ## Future Enhancements
 
