@@ -7,7 +7,7 @@ A full-stack cloud-native application demonstrating modern software development 
 ![Architecture Diagram](arc-assets/cloud-arch.png)
 ---
 ## WATCH THE DEMO VIDEO:
-[AWS Cloud Full Stack Architecture and Demo](https://drive.google.com/file/d/1nCe-jKmgFN4hT38MI4doDSGIPuFPRXRJ/view?usp=drive_link)
+[AWS Cloud Full Stack Architecture and Demo](https://www.youtube.com/watch?v=kqYI2u-pEm8)
 
 [Swagger Demo for Documentation](https://drive.google.com/file/d/1ZJ1Fie5GHxv4gOC5dujcfX-Gl5JInIfc/view?usp=drive_link)
 
